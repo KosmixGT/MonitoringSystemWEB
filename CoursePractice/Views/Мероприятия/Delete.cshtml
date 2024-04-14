@@ -1,0 +1,78 @@
+﻿@model CoursePractice.Мероприятия
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+
+<h3>Вы действительно хотите удалить мероприятие?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.тема_меропр)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.тема_меропр)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.описание)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.описание)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.дата_время_проведения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_время_проведения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.исполнитель)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.исполнитель)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Категория_мероприятия.категория_меропр)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Категория_мероприятия.категория_меропр)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.МКД.адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.МКД.адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Статус_мероприятия.статус_меропр)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_мероприятия.статус_меропр)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

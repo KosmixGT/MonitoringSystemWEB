@@ -1,0 +1,84 @@
+﻿@model CoursePractice.Мероприятия
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.код_мероприятия)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.кат_меропр, "кат_меропр", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("кат_меропр", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.кат_меропр, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.тема_меропр, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.тема_меропр, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.тема_меропр, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.объект_МКД, "объект_МКД", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("объект_МКД", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.объект_МКД, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.описание, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.описание, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.описание, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.дата_время_проведения, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.дата_время_проведения, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+                @Html.ValidationMessageFor(model => model.дата_время_проведения, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.исполнитель, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.исполнитель, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.исполнитель, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.статус_меропр, "статус_меропр", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("статус_меропр", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.статус_меропр, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn-sav" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

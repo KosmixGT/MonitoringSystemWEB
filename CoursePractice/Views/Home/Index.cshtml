@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<style>
+    .menu-icon {
+        width: 300px;
+        height: 300px;
+    }
+
+    .dashboard-image {
+        width: 300px;
+        height: auto;
+    }
+</style>
+
+<dd>
+
+    @if (User.IsInRole("Администратор"))
+    {
+        <main>
+            <section class="row" aria-labelledby="welcomeTitle">
+                <h1 id="welcomeTitle">Добро пожаловать! Вы находитесь на сайте в качестве администратора.</h1>
+                <p class="lead">Вы вошли в систему мониторинга многоквартирными домами.</p>
+            </section>
+
+            <div class="row">
+                <section class="col-md-4" aria-labelledby="tenantsTitle">
+                    <h2 id="tenantsTitle">Управляющие компании</h2>
+                    <img src="Images/uk.png" alt="Жильцы" class="menu-icon">
+                    <p>Управляйте информацией о управляющих компаниях в многоквартирных домах, добавляйте новые компании, просматривайте их данные.</p>
+                </section>
+                <section class="col-md-4" aria-labelledby="buildingsTitle">
+                    <h2 id="buildingsTitle">Здания</h2>
+                    <img src="Images/buildings_icon.jpg" alt="Здания" class="menu-icon">
+                    <p>Управляйте информацией о многоквартирных зданиях, добавляйте новые здания, просматривайте их параметры и статистику.</p>
+                </section>
+                <section class="col-md-4" aria-labelledby="reportsTitle">
+                    <h2 id="reportsTitle">Учётные записи</h2>
+                    <img src="Images/users.jpg" alt="Учётные записи" class="menu-icon">
+                    <p>Управляйте учётными записями пользователей, добавляйте новых пользователей, управляйте правами доступа и другими настройками.</p>
+                </section>
+            </div>
+        </main>
+    }
+    else if (User.IsInRole("Житель"))
+    {
+        <main>
+            <section class="row" aria-labelledby="welcomeTitle">
+                <h1 id="welcomeTitle">Добро пожаловать! Вы находитесь на сайте в качестве жителя.</h1>
+                <p class="lead">Вы вошли в систему мониторинга многоквартирными домами.</p>
+            </section>
+
+            <div class="row">
+                <section class="col-md-4" aria-labelledby="buildingsTitle">
+                    <h2 id="buildingsTitle">Обращения</h2>
+                    <img src="Images/buildings_icon.jpg" alt="Здания" class="menu-icon">
+                    <p>Публикуйте проблемные обращения к многоквартирным домам. Следите за ходом работы.</p>
+                </section>
+                <section class="col-md-4" aria-labelledby="reportsTitle">
+                    <h2 id="reportsTitle">Отчёты</h2>
+                    <img src="Images/users.jpg" alt="Учётные записи" class="menu-icon">
+                    <p>Создавайте отчёты с полезными для анализа данными.</p>
+                </section>
+            </div>
+        </main>
+    }
+    else if (User.IsInRole("Менеджер УК"))
+    {
+        <main>
+            <section class="row" aria-labelledby="welcomeTitle">
+                <h1 id="welcomeTitle"> Добро пожаловать! Вы находитесь на сайте в качестве менеджера управляющей компании.</h1>
+                <p class="lead">Вы вошли в систему мониторинга многоквартирными домами.</p>
+            </section>
+        </main>
+    }
+    else
+    {
+        <main>
+            <section class="row" aria-labelledby="welcomeTitle">
+                <h1 id="welcomeTitle">Добро пожаловать! Вы находитесь на сайте в качестве неавторизованного пользователя.</h1>
+                <p class="lead">Вы попали на портал системы мониторинга многоквартирными домами.</p>
+            </section>
+        </main>
+}
+
+</dd>
+
+

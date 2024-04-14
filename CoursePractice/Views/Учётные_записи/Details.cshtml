@@ -1,0 +1,42 @@
+﻿@model CoursePractice.Учётные_записи
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Учётные_записи</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.логин)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.логин)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.пароль)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.пароль)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_учётной_записи1.тип_пользователя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_учётной_записи1.тип_пользователя)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.код_пользователя }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

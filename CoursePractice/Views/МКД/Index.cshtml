@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CoursePractice.МКД>
+
+@{
+    ViewBag.Title = "Index";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Многоквартирные дома</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.адрес)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.кол_жил_пом)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.ОКТМО)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.кадастровый_номер)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.год_постройки)
+        </th>       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.адрес)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.кол_жил_пом)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ОКТМО)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.кадастровый_номер)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.год_постройки)
+            </td>      
+            <td>
+                @if (User.IsInRole("Администратор"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.код_МКД })
+                    <span>|</span>
+                    @Html.ActionLink("Details", "Details", new { id = item.код_МКД })
+                    <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.код_МКД })
+                }
+                else
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.код_МКД })
+                    <span>|</span>
+                    @Html.ActionLink("Details", "Details", new { id = item.код_МКД })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CoursePractice.Учётные_записи>
+
+@{
+    ViewBag.Title = "Index";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.логин)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.пароль)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_учётной_записи1.тип_пользователя)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.логин)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.пароль)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Тип_учётной_записи1.тип_пользователя)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.код_пользователя }) |
+                @Html.ActionLink("Details", "Details", new { id = item.код_пользователя }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.код_пользователя })
+            </td>
+        </tr>
+    }
+
+</table>

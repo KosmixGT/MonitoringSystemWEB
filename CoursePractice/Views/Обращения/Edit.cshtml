@@ -1,0 +1,387 @@
+﻿@model CoursePractice.Обращения
+
+@{
+    ViewBag.Title = "Edit";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Редактирование</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Обращения</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.код_обращения)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.тема, "Тема", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("тема", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.тема, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.сезонность, "Сезонность", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("сезонность", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.сезонность, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.срок_подг_ответа, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер УК"))
+                            {
+                                @Html.EditorFor(model => model.срок_подг_ответа, new { htmlAttributes = new { @class = "form-control" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.срок_подг_ответа, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            }
+                            @Html.ValidationMessageFor(model => model.срок_подг_ответа, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.срок_подтв_ответа, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер УК"))
+                            {
+                                @Html.EditorFor(model => model.срок_подтв_ответа, new { htmlAttributes = new { @class = "form-control" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.срок_подтв_ответа, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            }
+                            @Html.ValidationMessageFor(model => model.срок_подтв_ответа, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.описание, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор"))
+                            {
+                                @Html.TextAreaFor(model => model.описание, new { @class = "form-control", rows = 10 })
+                            }
+                            else
+                            {
+                                if (Model.статус_обращения == 5 && !User.IsInRole("Менеджер УК"))
+                                {
+                                    @Html.TextAreaFor(model => model.описание, new { @class = "form-control", rows = 10 })
+                                }
+                                else
+                                {
+                                    @Html.TextAreaFor(model => model.описание, new { @class = "form-control disabled-field", rows = 10 })
+                                }
+                            }
+                            @Html.ValidationMessageFor(model => model.описание, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.статус_обращения, "Статус обращения", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер УК"))
+                            {
+                                @Html.DropDownList("статус_обращения", null, htmlAttributes: new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.DropDownList("статус_обращения", null, htmlAttributes: new { @class = "form-control disabled-field" })
+                            }
+                            @Html.ValidationMessageFor(model => model.статус_обращения, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.дата_обращения, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор"))
+                            {
+                                @Html.TextBoxFor(model => model.дата_обращения, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.дата_обращения, "{0:yyyy-MM-dd}", new { @class = "form-control disabled-field", type = "date" })
+                            }
+
+                            @Html.ValidationMessageFor(model => model.дата_обращения, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.объект_МКД, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @if (User.IsInRole("Администратор"))
+                                    {
+                                        @Html.DropDownList("объект_МКД", null, htmlAttributes: new { @class = "form-control" })
+                                    }
+                                    else
+                                    {
+                                        if (Model.статус_обращения == 5)
+                                        {
+                                            @Html.DropDownList("объект_МКД", null, htmlAttributes: new { @class = "form-control" })
+                                        }
+                                        else
+                                        {
+                                            @Html.DropDownList("объект_МКД", null, htmlAttributes: new { @class = "form-control disabled-field" })
+                                        }
+
+                                    }
+                                </div>
+                            </div>
+                            @Html.ValidationMessageFor(model => model.объект_МКД, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.обслужив_лицо, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор") || User.IsInRole("Менеджер УК"))
+                            {
+                                @Html.EditorFor(model => model.обслужив_лицо, new { htmlAttributes = new { @class = "form-control" } })
+                            }
+                            else
+                            {
+                                @Html.EditorFor(model => model.обслужив_лицо, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            }
+
+                            @Html.ValidationMessageFor(model => model.обслужив_лицо, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.оценка, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.оценка, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.оценка, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.учётная_запись, "Учётная запись", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @if (User.IsInRole("Администратор"))
+                            {
+                                @Html.DropDownList("учётная_запись", null, htmlAttributes: new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.DropDownList("учётная_запись", null, htmlAttributes: new { @class = "form-control disabled-field" })                               
+                            }
+                            @Html.ValidationMessageFor(model => model.учётная_запись, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Сохранить изменения" class="btn-sav" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <style>
+            .btn-del {
+                background-color: #FF0000;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+                border-radius: 4px;
+                margin-top: 10px;
+            }
+
+                .btn-del:hover {
+                    background-color: #CC0000;
+                }
+
+                .btn-del:active {
+                    background-color: #990000;
+                }
+        </style>
+        <style>
+            .photo-item {
+                position: relative;
+                display: inline-block;
+                text-align: center;
+                margin-right: 10px;
+            }
+
+                .photo-item:not(:last-child) {
+                    margin-bottom: 20px;
+                }
+
+                .photo-item img {
+                    max-width: 450px;
+                    max-height: 450px;
+                }
+
+            .btn-del {
+                position: center;
+                top: 5px;
+                right: 5px;
+                z-index: 1;
+            }
+        </style>
+
+        <style>
+            .photo-list {
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+            .photo-label {
+                margin-bottom: 10px;
+            }
+        </style>
+
+        <style>
+            .disabled-field {
+                background-color: #f2f2f2;
+                color: #888888;
+                pointer-events: none;
+            }
+        </style>
+
+        <style>
+            .btn-sav {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+                border-radius: 4px;
+                margin-top: 10px;
+            }
+
+            .btn-sav:hover {
+                background-color: #45a049;
+            }
+
+            .btn-sav:active {
+                background-color: #3e8e41;
+            }
+        </style>
+
+        <div class="col-md-6">
+            @using (Html.BeginForm("UploadPhoto", "Обращения", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.код_обращения)
+
+                <dl class="photo-list">
+                    <dt class="photo-label">
+                        Фото
+                    </dt>
+                    <dd>
+                        @foreach (var фото in Model.Фото)
+                        {
+                            <div class="photo-item">
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(фото.данные_фото)" style="max-width: 450px; max-height: 450px;" />
+                                <button class="btn-del" onclick="confirmDelete('@фото.код_фото')">Удалить</button>
+                            </div>
+                        }
+                    </dd>
+                </dl>
+
+                <div>
+                    <input type="file" name="uploadedPhoto" accept=".jpg, .jpeg, .png" />
+                    <input type="submit" value="Добавить фото" class="btn btn-primary" />
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <a href="@Url.Action("Index")" class="link-style">Вернуться к списку обращений</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function confirmDelete(photoId) {
+            if (confirm('Вы уверены, что хотите удалить эту фотографию?')) {
+                // Создание AJAX-запроса для удаления фотографии
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/Обращения/DeletePhoto/' + photoId, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Обработка успешного удаления (если необходимо)
+                        // Обновление списка фотографий или других элементов на странице
+                    }
+                };
+                xhr.send();
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/Controller/GetStatuses', // Замените на соответствующий URL вашего контроллера
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var dropdown = $('#статус_обращения');
+                    $.each(data, function (key, value) {
+                        dropdown.append($('<option></option>').val(value).text(key));
+                    });
+                    dropdown.removeAttr('disabled');
+                },
+                error: function () {
+                    console.error('Ошибка получения статусов');
+                }
+            });
+        });
+    </script>
+}

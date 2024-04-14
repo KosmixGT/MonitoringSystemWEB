@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CoursePractice.Мероприятия>
+
+@{
+    ViewBag.Title = "Index";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Мероприятия</h2>
+
+<p>
+    @Html.ActionLink("Добавить мероприятие", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.тема_меропр)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.описание)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.дата_время_проведения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.исполнитель)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Категория_мероприятия.категория_меропр)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.МКД.адрес)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Статус_мероприятия.статус_меропр)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.тема_меропр)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.описание)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.дата_время_проведения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.исполнитель)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Категория_мероприятия.категория_меропр)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.МКД.адрес)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Статус_мероприятия.статус_меропр)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.код_мероприятия }, new { @class = "link-icon" })
+                <span> </span>
+                @Html.ActionLink("Подробная информация", "Details", new { id = item.код_мероприятия }, new { @class = "link-icon" })
+                <span> </span>
+                @Html.ActionLink("Удалить", "Delete", new { id = item.код_мероприятия }, new { @class = "link-icon" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .link-separator {
+        margin: 0 5px; /* Настройте отступы по вашему выбору */
+        color: #000; /* Цвет разделителя */
+    }
+
+    .link-icon {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        /* Добавьте ваш значок (например, из библиотеки иконок) */
+    }
+</style>

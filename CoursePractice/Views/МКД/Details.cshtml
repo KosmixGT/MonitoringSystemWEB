@@ -1,0 +1,342 @@
+﻿@model CoursePractice.МКД
+
+@{
+    ViewBag.Title = "Details";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>МКД</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.кол_жил_пом)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.кол_жил_пом)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.детская_площадка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.детская_площадка)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.спортивная_площадка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.спортивная_площадка)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ОКТМО)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ОКТМО)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.кадастровый_номер)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.кадастровый_номер)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.год_постройки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.год_постройки)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.год_ВДВУ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.год_ВДВУ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.тип_дома)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.тип_дома)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.кол_этажей)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.кол_этажей)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.кол_подъездов)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.кол_подъездов)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.кол_лифтов)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.кол_лифтов)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.площадь_жил_пом)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.площадь_жил_пом)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.площадь_нежил_пом)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.площадь_нежил_пом)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.площадь_ПВСОИ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.площадь_ПВСОИ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.площадь_зем_участка)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.площадь_зем_участка)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.фундамент)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.фундамент)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.тип_перекрытий)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.тип_перекрытий)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.мат_несущих_стен)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.мат_несущих_стен)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.площадь_подвала)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.площадь_подвала)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.тип_мусоропровода)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.тип_мусоропровода)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.вентиляция)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.вентиляция)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.водоотведение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.водоотведение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.система_водостоков)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.система_водостоков)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.газоснабжение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.газоснабжение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.горячее_водоснаб)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.горячее_водоснаб)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.холодное_водоснаб)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.холодное_водоснаб)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.теплоснабжение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.теплоснабжение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.электроснабжение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.электроснабжение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.мат_отделки_фасада)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.мат_отделки_фасада)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.форма_крыши)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.форма_крыши)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.утепляющие_слои_чердачных_перекрытий)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.утепляющие_слои_чердачных_перекрытий)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.мат_окон)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.мат_окон)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.мат_сети_отопления)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.мат_сети_отопления)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.мат_теплоизоляции_сети)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.мат_теплоизоляции_сети)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Состояние_дома.состояние_объекта_МКД)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Состояние_дома.состояние_объекта_МКД)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Способ_управления_МКД.способ_управления)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Способ_управления_МКД.способ_управления)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Управляющие_компании.название)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Управляющие_компании.название)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.код_МКД }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

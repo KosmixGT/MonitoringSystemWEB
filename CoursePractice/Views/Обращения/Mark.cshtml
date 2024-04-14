@@ -1,0 +1,199 @@
+﻿@model CoursePractice.Обращения
+
+@{
+    ViewBag.Title = "Mark";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Отзыв о решении проблемы</h2>
+
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <hr />
+        @using (Html.BeginForm("MarkPost", "Обращения", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+    <dl class="dl-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.код_обращения)
+        <dt>
+            @Html.DisplayNameFor(model => model.срок_подг_ответа)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.срок_подг_ответа)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.срок_подтв_ответа)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.срок_подтв_ответа)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.описание)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.описание)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.дата_обращения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_обращения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.обслужив_лицо)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.обслужив_лицо)
+        </dd>
+
+        <dt class="highlight-label">
+            @Html.DisplayNameFor(model => model.оценка)
+        </dt>
+        <dd>
+            <div class="form-group">
+                @Html.TextAreaFor(model => model.оценка, new { htmlAttributes = new { @class = "form-control highlight-input", rows = 5 } })
+                @Html.ValidationMessageFor(model => model.оценка, "", new { @class = "text-danger" })
+            </div>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.МКД.адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.МКД.адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Сезон_обращения.сезонность_обр)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Сезон_обращения.сезонность_обр)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Статус_обращения1.статус_обр)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Статус_обращения1.статус_обр)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тема_обращения.тема_проблемы)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тема_обращения.тема_проблемы)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Учётные_записи.логин)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Учётные_записи.логин)
+        </dd>
+
+    </dl>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Оставить оценку" class="btn-save" />
+                </div>
+            </div>
+        }
+    </div>
+        
+
+    <div style="flex: 1;">
+        <h4>ㅤФото</h4>
+        <dl class="dl-horizontal">
+            <dd>
+                @foreach (var фото in Model.Фото)
+                {
+                    <div class="photo-item">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(фото.данные_фото)" style="max-width: 450px; max-height: 450px;" />
+                    </div>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<p>
+    @if (Model.статус_обращения == 5 || User.IsInRole("Администратор"))
+    {
+
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.код_обращения })
+
+        <span>|</span>
+
+        @Html.ActionLink("Вернуться к списку", "Index")
+    }
+    else if (Model.статус_обращения == 3)
+    {
+        @Html.ActionLink("Вернуться к списку", "Index")
+    }
+    else
+    {
+        @Html.ActionLink("Вернуться к списку", "Index")
+    }
+
+</p>
+
+@*<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.код_обращения }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>*@
+
+<style>
+    .photo-label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .highlight-label {
+        background-color: #ffc107;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .highlight-input {
+        background-color: #fff3cd;
+        color: #333;
+        border: 1px solid #ffc107;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+</style>

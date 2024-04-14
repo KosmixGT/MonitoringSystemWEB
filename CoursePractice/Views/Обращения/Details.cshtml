@@ -1,0 +1,162 @@
+﻿@model CoursePractice.Обращения
+
+@{
+    ViewBag.Title = "Details";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Подробная информация</h2>
+
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Тема_обращения.тема_проблемы)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Тема_обращения.тема_проблемы)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.срок_подг_ответа)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.срок_подг_ответа)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.срок_подтв_ответа)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.срок_подтв_ответа)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.описание)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.описание)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.дата_обращения)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.дата_обращения)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.обслужив_лицо)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.обслужив_лицо)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.оценка)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.оценка)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.МКД.адрес)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.МКД.адрес)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Сезон_обращения.сезонность_обр)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Сезон_обращения.сезонность_обр)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Статус_обращения1.статус_обр)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Статус_обращения1.статус_обр)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.учётная_запись)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Учётные_записи.логин)
+            </dd>
+
+        </dl>
+    </div>
+    <div style="flex: 1;">
+        <h4>ㅤФото</h4>
+        <dl class="dl-horizontal">
+            <dd>
+                @foreach (var фото in Model.Фото)
+                {
+                    <div class="photo-item">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(фото.данные_фото)" style="max-width: 450px; max-height: 450px;" />
+                    </div>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @if (Model.статус_обращения == 5 || User.IsInRole("Администратор"))
+    {
+
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.код_обращения })
+
+    <span>|</span>
+
+        @Html.ActionLink("Вернуться к списку", "Index")
+    }
+    else if (Model.статус_обращения == 3)
+    {
+        @Html.ActionLink("Вернуться к списку", "Index")
+    }
+    else
+    {
+        @Html.ActionLink("Вернуться к списку", "Index")
+    }
+
+</p>
+
+<style>
+    .photo-label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+</style>

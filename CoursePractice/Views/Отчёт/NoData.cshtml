@@ -1,0 +1,32 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "No Data";
+    Layout = "~/Views/Shared/_ReportLayout.cshtml";
+}
+
+@if (Model != null && Model.Rows.Count > 0)
+{
+    <h2>Отчёт успешно сгенерирован!</h2>
+
+    <table>
+        <tr>
+            @foreach (System.Data.DataColumn column in Model.Columns)
+            {
+                <th>@column.ColumnName</th>
+            }
+        </tr>
+        @foreach (System.Data.DataRow row in Model.Rows)
+        {
+            <tr>
+                @foreach (var item in row.ItemArray)
+                {
+                    <td>@item.ToString()</td>
+                }
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No data available.</p>
+}

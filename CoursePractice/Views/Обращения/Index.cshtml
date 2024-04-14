@@ -1,0 +1,214 @@
+﻿@model IEnumerable<CoursePractice.Обращения>
+
+@{
+    ViewBag.Title = "Index";
+
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+@{
+    int count = 0;
+}
+
+<h2>Обращения</h2>
+
+<p>
+    @if (User.IsInRole("Менеджер УК"))
+    {
+
+    }
+    else
+    {
+        @Html.ActionLink("Создать новое обращение", "Create")
+    }
+
+</p>
+
+<form id="filterForm" method="get">
+    <label for="addressFilter">Фильтр по адресу:</label>
+    <input type="text" id="addressFilter" name="addressFilter" />
+
+    <input type="submit" value="Фильтровать" />
+</form>
+
+@{
+    var filteredItems = Model;
+    if (!string.IsNullOrEmpty(Request.QueryString["addressFilter"]))
+    {
+        string addressFilter = Request.QueryString["addressFilter"];
+        filteredItems = filteredItems.Where(item => item.МКД.адрес.Contains(addressFilter));
+    }
+}
+
+<p>Найдено обращений: @filteredItems.Count()</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.код_обращения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тема_обращения.тема_проблемы)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.описание)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.срок_подг_ответа)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.срок_подтв_ответа)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.дата_обращения)
+        </th>
+
+        @*<th>
+                @Html.ActionLink("Дата обращения", "IndexWithSortOrder", new { sortOrder = ViewBag.SortOrder })
+            </th>*@
+
+        <th>
+            @Html.DisplayNameFor(model => model.обслужив_лицо)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.оценка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.МКД.адрес)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Сезон_обращения.сезонность_обр)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Статус_обращения1.статус_обр)
+        </th>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Учётные_записи.логин)
+            </th>
+        }
+
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        // Пропустить обращение, если адрес не содержит введенный текст фильтрации
+        if (!string.IsNullOrEmpty(Request.QueryString["addressFilter"]) &&
+            !item.МКД.адрес.Contains(Request.QueryString["addressFilter"]))
+        {
+            continue;
+        }
+
+        // Увеличение значения переменной count
+        count++;
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.код_обращения)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Тема_обращения.тема_проблемы)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.описание)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.срок_подг_ответа)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.срок_подтв_ответа)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.дата_обращения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.обслужив_лицо)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.оценка)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.МКД.адрес)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Сезон_обращения.сезонность_обр)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Статус_обращения1.статус_обр)
+            </td>
+
+            @if (User.IsInRole("Администратор"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Учётные_записи.логин)
+                </td>
+            }
+
+
+
+            <td>
+
+                @if (item.статус_обращения == 5 || User.IsInRole("Администратор") || User.IsInRole("Менеджер УК"))
+                {
+
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.код_обращения }, new { @class = "link-icon" })
+                    @Html.ActionLink("Подробная информация", "Details", new { id = item.код_обращения }, new { @class = "link-icon" })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.код_обращения }, new { @class = "link-icon" })
+                }
+                else if (item.статус_обращения == 3)
+                {
+                    @Html.ActionLink("Подробная информация", "Details", new { id = item.код_обращения }, new { @class = "link-icon" })
+                    @Html.ActionLink("Оставить оценку", "Mark", new { id = item.код_обращения }, new { @class = "link-icon" })
+                }
+                else
+                {
+                    @Html.ActionLink("Подробная информация", "Details", new { id = item.код_обращения }, new { @class = "link-icon" })
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .link-separator {
+        margin: 0 5px; /* Настройте отступы по вашему выбору */
+        color: #000; /* Цвет разделителя */
+    }
+
+    .link-icon {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        /* Добавьте ваш значок (например, из библиотеки иконок) */
+    }
+</style>

@@ -1,0 +1,1269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище MonitoringSystemDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Категория_мероприятия">
+          <Key>
+            <PropertyRef Name="код_категории_меропр" />
+          </Key>
+          <Property Name="код_категории_меропр" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="категория_меропр" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Категория_проблемы">
+          <Key>
+            <PropertyRef Name="код_категории_проблемы" />
+          </Key>
+          <Property Name="код_категории_проблемы" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="кат_проблемы" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Мероприятия">
+          <Key>
+            <PropertyRef Name="код_мероприятия" />
+          </Key>
+          <Property Name="код_мероприятия" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="кат_меропр" Type="int" Nullable="false" />
+          <Property Name="тема_меропр" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="объект_МКД" Type="int" Nullable="false" />
+          <Property Name="описание" Type="nvarchar(max)" />
+          <Property Name="дата_время_проведения" Type="datetime" Nullable="false" />
+          <Property Name="исполнитель" Type="nvarchar(max)" />
+          <Property Name="статус_меропр" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="МКД">
+          <Key>
+            <PropertyRef Name="код_МКД" />
+          </Key>
+          <Property Name="код_МКД" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="адрес" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="кол_жил_пом" Type="smallint" />
+          <Property Name="состояние_МКД" Type="int" Nullable="false" />
+          <Property Name="детская_площадка" Type="nvarchar" MaxLength="4" />
+          <Property Name="спортивная_площадка" Type="nvarchar" MaxLength="4" />
+          <Property Name="тип_управления" Type="int" Nullable="false" />
+          <Property Name="ОКТМО" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="УК" Type="int" />
+          <Property Name="кадастровый_номер" Type="nchar" MaxLength="18" />
+          <Property Name="год_постройки" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="год_ВДВУ" Type="nchar" MaxLength="4" />
+          <Property Name="тип_дома" Type="nchar" MaxLength="18" Nullable="false" />
+          <Property Name="кол_этажей" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="кол_подъездов" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="кол_лифтов" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="площадь_жил_пом" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="площадь_нежил_пом" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="площадь_ПВСОИ" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="площадь_зем_участка" Type="decimal" Precision="15" Scale="4" />
+          <Property Name="фундамент" Type="nchar" MaxLength="20" />
+          <Property Name="тип_перекрытий" Type="nchar" MaxLength="20" />
+          <Property Name="мат_несущих_стен" Type="nchar" MaxLength="20" />
+          <Property Name="площадь_подвала" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="тип_мусоропровода" Type="nchar" MaxLength="20" />
+          <Property Name="вентиляция" Type="nchar" MaxLength="20" />
+          <Property Name="водоотведение" Type="nchar" MaxLength="20" />
+          <Property Name="система_водостоков" Type="nchar" MaxLength="20" />
+          <Property Name="газоснабжение" Type="nchar" MaxLength="20" />
+          <Property Name="горячее_водоснаб" Type="nchar" MaxLength="20" />
+          <Property Name="холодное_водоснаб" Type="nchar" MaxLength="20" />
+          <Property Name="теплоснабжение" Type="nchar" MaxLength="20" />
+          <Property Name="электроснабжение" Type="nchar" MaxLength="20" />
+          <Property Name="мат_отделки_фасада" Type="nchar" MaxLength="20" />
+          <Property Name="форма_крыши" Type="nchar" MaxLength="20" />
+          <Property Name="утепляющие_слои_чердачных_перекрытий" Type="nchar" MaxLength="20" />
+          <Property Name="мат_окон" Type="nchar" MaxLength="20" />
+          <Property Name="мат_сети_отопления" Type="nchar" MaxLength="20" />
+          <Property Name="мат_теплоизоляции_сети" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Обращения">
+          <Key>
+            <PropertyRef Name="код_обращения" />
+          </Key>
+          <Property Name="код_обращения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="тема" Type="int" Nullable="false" />
+          <Property Name="сезонность" Type="int" Nullable="false" />
+          <Property Name="срок_подг_ответа" Type="tinyint" />
+          <Property Name="срок_подтв_ответа" Type="tinyint" />
+          <Property Name="описание" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="статус_обращения" Type="int" Nullable="false" />
+          <Property Name="дата_обращения" Type="date" Nullable="false" />
+          <Property Name="объект_МКД" Type="int" Nullable="false" />
+          <Property Name="обслужив_лицо" Type="nvarchar" MaxLength="50" />
+          <Property Name="оценка" Type="nvarchar" MaxLength="200" />
+          <Property Name="учётная_запись" Type="int" />
+        </EntityType>
+        <EntityType Name="ОПФ_ук">
+          <Key>
+            <PropertyRef Name="код_опф" />
+          </Key>
+          <Property Name="код_опф" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="орг_прав_форма" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сезон_обращения">
+          <Key>
+            <PropertyRef Name="код_сезонности_обр" />
+          </Key>
+          <Property Name="код_сезонности_обр" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="сезонность_обр" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Состояние_дома">
+          <Key>
+            <PropertyRef Name="код_состояния_объекта" />
+          </Key>
+          <Property Name="код_состояния_объекта" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="состояние_объекта_МКД" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Способ_управления_МКД">
+          <Key>
+            <PropertyRef Name="код_типа_управления" />
+          </Key>
+          <Property Name="код_типа_управления" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="способ_управления" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Статус_мероприятия">
+          <Key>
+            <PropertyRef Name="код_тек_статуса_меропр" />
+          </Key>
+          <Property Name="код_тек_статуса_меропр" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="статус_меропр" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Статус_обращения">
+          <Key>
+            <PropertyRef Name="код_статуса_обращения" />
+          </Key>
+          <Property Name="код_статуса_обращения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="статус_обр" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тема_обращения">
+          <Key>
+            <PropertyRef Name="код_темы_обращения" />
+          </Key>
+          <Property Name="код_темы_обращения" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="тема_проблемы" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="категория_проблемы" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тип_учётной_записи">
+          <Key>
+            <PropertyRef Name="код_типа_пользователя" />
+          </Key>
+          <Property Name="код_типа_пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="тип_пользователя" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Управляющие_компании">
+          <Key>
+            <PropertyRef Name="код_ук" />
+          </Key>
+          <Property Name="код_ук" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="название" Type="nvarchar" MaxLength="50" />
+          <Property Name="фирм_наим" Type="nvarchar" MaxLength="50" />
+          <Property Name="сокр_наим" Type="nvarchar" MaxLength="50" />
+          <Property Name="ФИО_руков" Type="nvarchar(max)" />
+          <Property Name="дата_получения_лицензии" Type="date" />
+          <Property Name="номер_лицензии" Type="nchar" MaxLength="9" />
+          <Property Name="орган_выдавший_лицензию" Type="nvarchar(max)" />
+          <Property Name="ИНН" Type="nchar" MaxLength="12" />
+          <Property Name="ОПФ" Type="int" />
+          <Property Name="ОГРН" Type="nchar" MaxLength="13" />
+          <Property Name="почтовый_адрес" Type="nvarchar(max)" />
+          <Property Name="адрес_ФМОУ" Type="nvarchar(max)" />
+          <Property Name="место_ГРЮЛ" Type="nvarchar(max)" />
+          <Property Name="адрес_дисп_службы" Type="nvarchar(max)" />
+          <Property Name="контактный_телефон" Type="nvarchar" MaxLength="50" />
+          <Property Name="адрес_электронной_почты" Type="nvarchar" MaxLength="50" />
+          <Property Name="учётная_запись" Type="int" Nullable="false" />
+          <Property Name="подтверждение" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Учётные_записи">
+          <Key>
+            <PropertyRef Name="код_пользователя" />
+          </Key>
+          <Property Name="код_пользователя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="пароль" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="тип_учётной_записи" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Фото">
+          <Key>
+            <PropertyRef Name="код_фото" />
+          </Key>
+          <Property Name="код_фото" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="номер_обращения" Type="int" Nullable="false" />
+          <Property Name="данные_фото" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Мероприятия_Категория_мероприятия">
+          <End Role="Категория_мероприятия" Type="Self.Категория_мероприятия" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Мероприятия" Type="Self.Мероприятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категория_мероприятия">
+              <PropertyRef Name="код_категории_меропр" />
+            </Principal>
+            <Dependent Role="Мероприятия">
+              <PropertyRef Name="кат_меропр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Мероприятия_МКД">
+          <End Role="МКД" Type="Self.МКД" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Мероприятия" Type="Self.Мероприятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="МКД">
+              <PropertyRef Name="код_МКД" />
+            </Principal>
+            <Dependent Role="Мероприятия">
+              <PropertyRef Name="объект_МКД" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Мероприятия_Статус_мероприятия">
+          <End Role="Статус_мероприятия" Type="Self.Статус_мероприятия" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Мероприятия" Type="Self.Мероприятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_мероприятия">
+              <PropertyRef Name="код_тек_статуса_меропр" />
+            </Principal>
+            <Dependent Role="Мероприятия">
+              <PropertyRef Name="статус_меропр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МКД_Состояние_дома">
+          <End Role="Состояние_дома" Type="Self.Состояние_дома" Multiplicity="1" />
+          <End Role="МКД" Type="Self.МКД" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Состояние_дома">
+              <PropertyRef Name="код_состояния_объекта" />
+            </Principal>
+            <Dependent Role="МКД">
+              <PropertyRef Name="состояние_МКД" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МКД_Способ_управления_МКД">
+          <End Role="Способ_управления_МКД" Type="Self.Способ_управления_МКД" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="МКД" Type="Self.МКД" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Способ_управления_МКД">
+              <PropertyRef Name="код_типа_управления" />
+            </Principal>
+            <Dependent Role="МКД">
+              <PropertyRef Name="тип_управления" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МКД_Управляющие_компании">
+          <End Role="Управляющие_компании" Type="Self.Управляющие_компании" Multiplicity="0..1" />
+          <End Role="МКД" Type="Self.МКД" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Управляющие_компании">
+              <PropertyRef Name="код_ук" />
+            </Principal>
+            <Dependent Role="МКД">
+              <PropertyRef Name="УК" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_МКД">
+          <End Role="МКД" Type="Self.МКД" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="МКД">
+              <PropertyRef Name="код_МКД" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="объект_МКД" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Сезонность_обращения">
+          <End Role="Сезон_обращения" Type="Self.Сезон_обращения" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сезон_обращения">
+              <PropertyRef Name="код_сезонности_обр" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="сезонность" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Статус_обращения">
+          <End Role="Статус_обращения" Type="Self.Статус_обращения" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_обращения">
+              <PropertyRef Name="код_статуса_обращения" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="статус_обращения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Тема_обращения">
+          <End Role="Тема_обращения" Type="Self.Тема_обращения" Multiplicity="1" />
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тема_обращения">
+              <PropertyRef Name="код_темы_обращения" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="тема" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Учётные_записи">
+          <End Role="Учётные_записи" Type="Self.Учётные_записи" Multiplicity="0..1" />
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учётные_записи">
+              <PropertyRef Name="код_пользователя" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="учётная_запись" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тема_обращения_Категория_проблемы">
+          <End Role="Категория_проблемы" Type="Self.Категория_проблемы" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Тема_обращения" Type="Self.Тема_обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категория_проблемы">
+              <PropertyRef Name="код_категории_проблемы" />
+            </Principal>
+            <Dependent Role="Тема_обращения">
+              <PropertyRef Name="категория_проблемы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Управляющие_компании_ОПФ_ук">
+          <End Role="ОПФ_ук" Type="Self.ОПФ_ук" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Управляющие_компании" Type="Self.Управляющие_компании" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ОПФ_ук">
+              <PropertyRef Name="код_опф" />
+            </Principal>
+            <Dependent Role="Управляющие_компании">
+              <PropertyRef Name="ОПФ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Управляющие_компании_Учётные_записи">
+          <End Role="Учётные_записи" Type="Self.Учётные_записи" Multiplicity="1" />
+          <End Role="Управляющие_компании" Type="Self.Управляющие_компании" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учётные_записи">
+              <PropertyRef Name="код_пользователя" />
+            </Principal>
+            <Dependent Role="Управляющие_компании">
+              <PropertyRef Name="учётная_запись" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учётные_записи_Тип_учётной_записи">
+          <End Role="Тип_учётной_записи" Type="Self.Тип_учётной_записи" Multiplicity="1" />
+          <End Role="Учётные_записи" Type="Self.Учётные_записи" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_учётной_записи">
+              <PropertyRef Name="код_типа_пользователя" />
+            </Principal>
+            <Dependent Role="Учётные_записи">
+              <PropertyRef Name="тип_учётной_записи" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фото_Обращения">
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Фото" Type="Self.Фото" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Обращения">
+              <PropertyRef Name="код_обращения" />
+            </Principal>
+            <Dependent Role="Фото">
+              <PropertyRef Name="номер_обращения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MonitoringSystemDBModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Категория_мероприятия" EntityType="Self.Категория_мероприятия" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Категория_проблемы" EntityType="Self.Категория_проблемы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Мероприятия" EntityType="Self.Мероприятия" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="МКД" EntityType="Self.МКД" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Обращения" EntityType="Self.Обращения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ОПФ_ук" EntityType="Self.ОПФ_ук" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сезон_обращения" EntityType="Self.Сезон_обращения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Состояние_дома" EntityType="Self.Состояние_дома" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Способ_управления_МКД" EntityType="Self.Способ_управления_МКД" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статус_мероприятия" EntityType="Self.Статус_мероприятия" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статус_обращения" EntityType="Self.Статус_обращения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тема_обращения" EntityType="Self.Тема_обращения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_учётной_записи" EntityType="Self.Тип_учётной_записи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Управляющие_компании" EntityType="Self.Управляющие_компании" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учётные_записи" EntityType="Self.Учётные_записи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Фото" EntityType="Self.Фото" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Мероприятия_Категория_мероприятия" Association="Self.FK_Мероприятия_Категория_мероприятия">
+            <End Role="Категория_мероприятия" EntitySet="Категория_мероприятия" />
+            <End Role="Мероприятия" EntitySet="Мероприятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Мероприятия_МКД" Association="Self.FK_Мероприятия_МКД">
+            <End Role="МКД" EntitySet="МКД" />
+            <End Role="Мероприятия" EntitySet="Мероприятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Мероприятия_Статус_мероприятия" Association="Self.FK_Мероприятия_Статус_мероприятия">
+            <End Role="Статус_мероприятия" EntitySet="Статус_мероприятия" />
+            <End Role="Мероприятия" EntitySet="Мероприятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МКД_Состояние_дома" Association="Self.FK_МКД_Состояние_дома">
+            <End Role="Состояние_дома" EntitySet="Состояние_дома" />
+            <End Role="МКД" EntitySet="МКД" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МКД_Способ_управления_МКД" Association="Self.FK_МКД_Способ_управления_МКД">
+            <End Role="Способ_управления_МКД" EntitySet="Способ_управления_МКД" />
+            <End Role="МКД" EntitySet="МКД" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МКД_Управляющие_компании" Association="Self.FK_МКД_Управляющие_компании">
+            <End Role="Управляющие_компании" EntitySet="Управляющие_компании" />
+            <End Role="МКД" EntitySet="МКД" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_МКД" Association="Self.FK_Обращения_МКД">
+            <End Role="МКД" EntitySet="МКД" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Сезонность_обращения" Association="Self.FK_Обращения_Сезонность_обращения">
+            <End Role="Сезон_обращения" EntitySet="Сезон_обращения" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Статус_обращения" Association="Self.FK_Обращения_Статус_обращения">
+            <End Role="Статус_обращения" EntitySet="Статус_обращения" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Тема_обращения" Association="Self.FK_Обращения_Тема_обращения">
+            <End Role="Тема_обращения" EntitySet="Тема_обращения" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Учётные_записи" Association="Self.FK_Обращения_Учётные_записи">
+            <End Role="Учётные_записи" EntitySet="Учётные_записи" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тема_обращения_Категория_проблемы" Association="Self.FK_Тема_обращения_Категория_проблемы">
+            <End Role="Категория_проблемы" EntitySet="Категория_проблемы" />
+            <End Role="Тема_обращения" EntitySet="Тема_обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Управляющие_компании_ОПФ_ук" Association="Self.FK_Управляющие_компании_ОПФ_ук">
+            <End Role="ОПФ_ук" EntitySet="ОПФ_ук" />
+            <End Role="Управляющие_компании" EntitySet="Управляющие_компании" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Управляющие_компании_Учётные_записи" Association="Self.FK_Управляющие_компании_Учётные_записи">
+            <End Role="Учётные_записи" EntitySet="Учётные_записи" />
+            <End Role="Управляющие_компании" EntitySet="Управляющие_компании" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учётные_записи_Тип_учётной_записи" Association="Self.FK_Учётные_записи_Тип_учётной_записи">
+            <End Role="Тип_учётной_записи" EntitySet="Тип_учётной_записи" />
+            <End Role="Учётные_записи" EntitySet="Учётные_записи" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фото_Обращения" Association="Self.FK_Фото_Обращения">
+            <End Role="Обращения" EntitySet="Обращения" />
+            <End Role="Фото" EntitySet="Фото" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MonitoringSystemDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Категория_мероприятия">
+          <Key>
+            <PropertyRef Name="код_категории_меропр" />
+          </Key>
+          <Property Name="код_категории_меропр" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="категория_меропр" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Мероприятия" Relationship="Self.FK_Мероприятия_Категория_мероприятия" FromRole="Категория_мероприятия" ToRole="Мероприятия" />
+        </EntityType>
+        <EntityType Name="Категория_проблемы">
+          <Key>
+            <PropertyRef Name="код_категории_проблемы" />
+          </Key>
+          <Property Name="код_категории_проблемы" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="кат_проблемы" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Тема_обращения" Relationship="Self.FK_Тема_обращения_Категория_проблемы" FromRole="Категория_проблемы" ToRole="Тема_обращения" />
+        </EntityType>
+        <EntityType Name="Мероприятия">
+          <Key>
+            <PropertyRef Name="код_мероприятия" />
+          </Key>
+          <Property Name="код_мероприятия" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="кат_меропр" Type="Int32" Nullable="false" />
+          <Property Name="тема_меропр" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="объект_МКД" Type="Int32" Nullable="false" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="дата_время_проведения" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="исполнитель" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="статус_меропр" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Категория_мероприятия" Relationship="Self.FK_Мероприятия_Категория_мероприятия" FromRole="Мероприятия" ToRole="Категория_мероприятия" />
+          <NavigationProperty Name="МКД" Relationship="Self.FK_Мероприятия_МКД" FromRole="Мероприятия" ToRole="МКД" />
+          <NavigationProperty Name="Статус_мероприятия" Relationship="Self.FK_Мероприятия_Статус_мероприятия" FromRole="Мероприятия" ToRole="Статус_мероприятия" />
+        </EntityType>
+        <EntityType Name="МКД">
+          <Key>
+            <PropertyRef Name="код_МКД" />
+          </Key>
+          <Property Name="код_МКД" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="адрес" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="кол_жил_пом" Type="Int16" />
+          <Property Name="состояние_МКД" Type="Int32" Nullable="false" />
+          <Property Name="детская_площадка" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="спортивная_площадка" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="тип_управления" Type="Int32" Nullable="false" />
+          <Property Name="ОКТМО" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="УК" Type="Int32" />
+          <Property Name="кадастровый_номер" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
+          <Property Name="год_постройки" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="год_ВДВУ" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="тип_дома" Type="String" MaxLength="18" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="кол_этажей" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="кол_подъездов" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="кол_лифтов" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="площадь_жил_пом" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="площадь_нежил_пом" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="площадь_ПВСОИ" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="площадь_зем_участка" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="фундамент" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="тип_перекрытий" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="мат_несущих_стен" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="площадь_подвала" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="тип_мусоропровода" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="вентиляция" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="водоотведение" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="система_водостоков" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="газоснабжение" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="горячее_водоснаб" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="холодное_водоснаб" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="теплоснабжение" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="электроснабжение" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="мат_отделки_фасада" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="форма_крыши" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="утепляющие_слои_чердачных_перекрытий" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="мат_окон" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="мат_сети_отопления" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="мат_теплоизоляции_сети" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Мероприятия" Relationship="Self.FK_Мероприятия_МКД" FromRole="МКД" ToRole="Мероприятия" />
+          <NavigationProperty Name="Состояние_дома" Relationship="Self.FK_МКД_Состояние_дома" FromRole="МКД" ToRole="Состояние_дома" />
+          <NavigationProperty Name="Способ_управления_МКД" Relationship="Self.FK_МКД_Способ_управления_МКД" FromRole="МКД" ToRole="Способ_управления_МКД" />
+          <NavigationProperty Name="Управляющие_компании" Relationship="Self.FK_МКД_Управляющие_компании" FromRole="МКД" ToRole="Управляющие_компании" />
+          <NavigationProperty Name="Обращения" Relationship="Self.FK_Обращения_МКД" FromRole="МКД" ToRole="Обращения" />
+        </EntityType>
+        <EntityType Name="Обращения">
+          <Key>
+            <PropertyRef Name="код_обращения" />
+          </Key>
+          <Property Name="код_обращения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="тема" Type="Int32" Nullable="false" />
+          <Property Name="сезонность" Type="Int32" Nullable="false" />
+          <Property Name="срок_подг_ответа" Type="Byte" />
+          <Property Name="срок_подтв_ответа" Type="Byte" />
+          <Property Name="описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="статус_обращения" Type="Int32" Nullable="false" />
+          <Property Name="дата_обращения" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="объект_МКД" Type="Int32" Nullable="false" />
+          <Property Name="обслужив_лицо" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="оценка" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="учётная_запись" Type="Int32" />
+          <NavigationProperty Name="МКД" Relationship="Self.FK_Обращения_МКД" FromRole="Обращения" ToRole="МКД" />
+          <NavigationProperty Name="Сезон_обращения" Relationship="Self.FK_Обращения_Сезонность_обращения" FromRole="Обращения" ToRole="Сезон_обращения" />
+          <NavigationProperty Name="Статус_обращения1" Relationship="Self.FK_Обращения_Статус_обращения" FromRole="Обращения" ToRole="Статус_обращения" />
+          <NavigationProperty Name="Тема_обращения" Relationship="Self.FK_Обращения_Тема_обращения" FromRole="Обращения" ToRole="Тема_обращения" />
+          <NavigationProperty Name="Учётные_записи" Relationship="Self.FK_Обращения_Учётные_записи" FromRole="Обращения" ToRole="Учётные_записи" />
+          <NavigationProperty Name="Фото" Relationship="Self.FK_Фото_Обращения" FromRole="Обращения" ToRole="Фото" />
+        </EntityType>
+        <EntityType Name="ОПФ_ук">
+          <Key>
+            <PropertyRef Name="код_опф" />
+          </Key>
+          <Property Name="код_опф" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="орг_прав_форма" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Управляющие_компании" Relationship="Self.FK_Управляющие_компании_ОПФ_ук" FromRole="ОПФ_ук" ToRole="Управляющие_компании" />
+        </EntityType>
+        <EntityType Name="Сезон_обращения">
+          <Key>
+            <PropertyRef Name="код_сезонности_обр" />
+          </Key>
+          <Property Name="код_сезонности_обр" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="сезонность_обр" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Обращения" Relationship="Self.FK_Обращения_Сезонность_обращения" FromRole="Сезон_обращения" ToRole="Обращения" />
+        </EntityType>
+        <EntityType Name="Состояние_дома">
+          <Key>
+            <PropertyRef Name="код_состояния_объекта" />
+          </Key>
+          <Property Name="код_состояния_объекта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="состояние_объекта_МКД" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="МКД" Relationship="Self.FK_МКД_Состояние_дома" FromRole="Состояние_дома" ToRole="МКД" />
+        </EntityType>
+        <EntityType Name="Способ_управления_МКД">
+          <Key>
+            <PropertyRef Name="код_типа_управления" />
+          </Key>
+          <Property Name="код_типа_управления" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="способ_управления" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="МКД" Relationship="Self.FK_МКД_Способ_управления_МКД" FromRole="Способ_управления_МКД" ToRole="МКД" />
+        </EntityType>
+        <EntityType Name="Статус_мероприятия">
+          <Key>
+            <PropertyRef Name="код_тек_статуса_меропр" />
+          </Key>
+          <Property Name="код_тек_статуса_меропр" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="статус_меропр" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Мероприятия" Relationship="Self.FK_Мероприятия_Статус_мероприятия" FromRole="Статус_мероприятия" ToRole="Мероприятия" />
+        </EntityType>
+        <EntityType Name="Статус_обращения">
+          <Key>
+            <PropertyRef Name="код_статуса_обращения" />
+          </Key>
+          <Property Name="код_статуса_обращения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="статус_обр" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Обращения" Relationship="Self.FK_Обращения_Статус_обращения" FromRole="Статус_обращения" ToRole="Обращения" />
+        </EntityType>
+        <EntityType Name="Тема_обращения">
+          <Key>
+            <PropertyRef Name="код_темы_обращения" />
+          </Key>
+          <Property Name="код_темы_обращения" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="тема_проблемы" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="категория_проблемы" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Категория_проблемы1" Relationship="Self.FK_Тема_обращения_Категория_проблемы" FromRole="Тема_обращения" ToRole="Категория_проблемы" />
+          <NavigationProperty Name="Обращения" Relationship="Self.FK_Обращения_Тема_обращения" FromRole="Тема_обращения" ToRole="Обращения" />
+        </EntityType>
+        <EntityType Name="Тип_учётной_записи">
+          <Key>
+            <PropertyRef Name="код_типа_пользователя" />
+          </Key>
+          <Property Name="код_типа_пользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="тип_пользователя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Учётные_записи" Relationship="Self.FK_Учётные_записи_Тип_учётной_записи" FromRole="Тип_учётной_записи" ToRole="Учётные_записи" />
+        </EntityType>
+        <EntityType Name="Управляющие_компании">
+          <Key>
+            <PropertyRef Name="код_ук" />
+          </Key>
+          <Property Name="код_ук" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="фирм_наим" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="сокр_наим" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ФИО_руков" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="дата_получения_лицензии" Type="DateTime" Precision="0" />
+          <Property Name="номер_лицензии" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
+          <Property Name="орган_выдавший_лицензию" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ИНН" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+          <Property Name="ОПФ" Type="Int32" />
+          <Property Name="ОГРН" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+          <Property Name="почтовый_адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="адрес_ФМОУ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="место_ГРЮЛ" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="адрес_дисп_службы" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="контактный_телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="адрес_электронной_почты" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="учётная_запись" Type="Int32" Nullable="false" />
+          <Property Name="подтверждение" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="МКД" Relationship="Self.FK_МКД_Управляющие_компании" FromRole="Управляющие_компании" ToRole="МКД" />
+          <NavigationProperty Name="ОПФ_ук" Relationship="Self.FK_Управляющие_компании_ОПФ_ук" FromRole="Управляющие_компании" ToRole="ОПФ_ук" />
+          <NavigationProperty Name="Учётные_записи" Relationship="Self.FK_Управляющие_компании_Учётные_записи" FromRole="Управляющие_компании" ToRole="Учётные_записи" />
+        </EntityType>
+        <EntityType Name="Учётные_записи">
+          <Key>
+            <PropertyRef Name="код_пользователя" />
+          </Key>
+          <Property Name="код_пользователя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="тип_учётной_записи" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Обращения" Relationship="Self.FK_Обращения_Учётные_записи" FromRole="Учётные_записи" ToRole="Обращения" />
+          <NavigationProperty Name="Тип_учётной_записи1" Relationship="Self.FK_Учётные_записи_Тип_учётной_записи" FromRole="Учётные_записи" ToRole="Тип_учётной_записи" />
+          <NavigationProperty Name="Управляющие_компании" Relationship="Self.FK_Управляющие_компании_Учётные_записи" FromRole="Учётные_записи" ToRole="Управляющие_компании" />
+        </EntityType>
+        <EntityType Name="Фото">
+          <Key>
+            <PropertyRef Name="код_фото" />
+          </Key>
+          <Property Name="код_фото" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="номер_обращения" Type="Int32" Nullable="false" />
+          <Property Name="данные_фото" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Обращения" Relationship="Self.FK_Фото_Обращения" FromRole="Фото" ToRole="Обращения" />
+        </EntityType>
+        <Association Name="FK_Мероприятия_Категория_мероприятия">
+          <End Role="Категория_мероприятия" Type="Self.Категория_мероприятия" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Мероприятия" Type="Self.Мероприятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категория_мероприятия">
+              <PropertyRef Name="код_категории_меропр" />
+            </Principal>
+            <Dependent Role="Мероприятия">
+              <PropertyRef Name="кат_меропр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тема_обращения_Категория_проблемы">
+          <End Role="Категория_проблемы" Type="Self.Категория_проблемы" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Тема_обращения" Type="Self.Тема_обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Категория_проблемы">
+              <PropertyRef Name="код_категории_проблемы" />
+            </Principal>
+            <Dependent Role="Тема_обращения">
+              <PropertyRef Name="категория_проблемы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Мероприятия_МКД">
+          <End Role="МКД" Type="Self.МКД" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Мероприятия" Type="Self.Мероприятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="МКД">
+              <PropertyRef Name="код_МКД" />
+            </Principal>
+            <Dependent Role="Мероприятия">
+              <PropertyRef Name="объект_МКД" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Мероприятия_Статус_мероприятия">
+          <End Role="Статус_мероприятия" Type="Self.Статус_мероприятия" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Мероприятия" Type="Self.Мероприятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_мероприятия">
+              <PropertyRef Name="код_тек_статуса_меропр" />
+            </Principal>
+            <Dependent Role="Мероприятия">
+              <PropertyRef Name="статус_меропр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МКД_Состояние_дома">
+          <End Role="Состояние_дома" Type="Self.Состояние_дома" Multiplicity="1" />
+          <End Role="МКД" Type="Self.МКД" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Состояние_дома">
+              <PropertyRef Name="код_состояния_объекта" />
+            </Principal>
+            <Dependent Role="МКД">
+              <PropertyRef Name="состояние_МКД" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МКД_Способ_управления_МКД">
+          <End Role="Способ_управления_МКД" Type="Self.Способ_управления_МКД" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="МКД" Type="Self.МКД" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Способ_управления_МКД">
+              <PropertyRef Name="код_типа_управления" />
+            </Principal>
+            <Dependent Role="МКД">
+              <PropertyRef Name="тип_управления" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МКД_Управляющие_компании">
+          <End Role="Управляющие_компании" Type="Self.Управляющие_компании" Multiplicity="0..1" />
+          <End Role="МКД" Type="Self.МКД" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Управляющие_компании">
+              <PropertyRef Name="код_ук" />
+            </Principal>
+            <Dependent Role="МКД">
+              <PropertyRef Name="УК" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_МКД">
+          <End Role="МКД" Type="Self.МКД" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="МКД">
+              <PropertyRef Name="код_МКД" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="объект_МКД" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Сезонность_обращения">
+          <End Role="Сезон_обращения" Type="Self.Сезон_обращения" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сезон_обращения">
+              <PropertyRef Name="код_сезонности_обр" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="сезонность" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Статус_обращения">
+          <End Role="Статус_обращения" Type="Self.Статус_обращения" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_обращения">
+              <PropertyRef Name="код_статуса_обращения" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="статус_обращения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Тема_обращения">
+          <End Role="Тема_обращения" Type="Self.Тема_обращения" Multiplicity="1" />
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тема_обращения">
+              <PropertyRef Name="код_темы_обращения" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="тема" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Обращения_Учётные_записи">
+          <End Role="Учётные_записи" Type="Self.Учётные_записи" Multiplicity="0..1" />
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учётные_записи">
+              <PropertyRef Name="код_пользователя" />
+            </Principal>
+            <Dependent Role="Обращения">
+              <PropertyRef Name="учётная_запись" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фото_Обращения">
+          <End Role="Обращения" Type="Self.Обращения" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Фото" Type="Self.Фото" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Обращения">
+              <PropertyRef Name="код_обращения" />
+            </Principal>
+            <Dependent Role="Фото">
+              <PropertyRef Name="номер_обращения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Управляющие_компании_ОПФ_ук">
+          <End Role="ОПФ_ук" Type="Self.ОПФ_ук" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Управляющие_компании" Type="Self.Управляющие_компании" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ОПФ_ук">
+              <PropertyRef Name="код_опф" />
+            </Principal>
+            <Dependent Role="Управляющие_компании">
+              <PropertyRef Name="ОПФ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Учётные_записи_Тип_учётной_записи">
+          <End Role="Тип_учётной_записи" Type="Self.Тип_учётной_записи" Multiplicity="1" />
+          <End Role="Учётные_записи" Type="Self.Учётные_записи" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_учётной_записи">
+              <PropertyRef Name="код_типа_пользователя" />
+            </Principal>
+            <Dependent Role="Учётные_записи">
+              <PropertyRef Name="тип_учётной_записи" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Управляющие_компании_Учётные_записи">
+          <End Role="Учётные_записи" Type="Self.Учётные_записи" Multiplicity="1" />
+          <End Role="Управляющие_компании" Type="Self.Управляющие_компании" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учётные_записи">
+              <PropertyRef Name="код_пользователя" />
+            </Principal>
+            <Dependent Role="Управляющие_компании">
+              <PropertyRef Name="учётная_запись" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MonitoringSystemDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Категория_мероприятия" EntityType="Self.Категория_мероприятия" />
+          <EntitySet Name="Категория_проблемы" EntityType="Self.Категория_проблемы" />
+          <EntitySet Name="Мероприятия" EntityType="Self.Мероприятия" />
+          <EntitySet Name="МКД" EntityType="Self.МКД" />
+          <EntitySet Name="Обращения" EntityType="Self.Обращения" />
+          <EntitySet Name="ОПФ_ук" EntityType="Self.ОПФ_ук" />
+          <EntitySet Name="Сезон_обращения" EntityType="Self.Сезон_обращения" />
+          <EntitySet Name="Состояние_дома" EntityType="Self.Состояние_дома" />
+          <EntitySet Name="Способ_управления_МКД" EntityType="Self.Способ_управления_МКД" />
+          <EntitySet Name="Статус_мероприятия" EntityType="Self.Статус_мероприятия" />
+          <EntitySet Name="Статус_обращения" EntityType="Self.Статус_обращения" />
+          <EntitySet Name="Тема_обращения" EntityType="Self.Тема_обращения" />
+          <EntitySet Name="Тип_учётной_записи" EntityType="Self.Тип_учётной_записи" />
+          <EntitySet Name="Управляющие_компании" EntityType="Self.Управляющие_компании" />
+          <EntitySet Name="Учётные_записи" EntityType="Self.Учётные_записи" />
+          <EntitySet Name="Фото" EntityType="Self.Фото" />
+          <AssociationSet Name="FK_Мероприятия_Категория_мероприятия" Association="Self.FK_Мероприятия_Категория_мероприятия">
+            <End Role="Категория_мероприятия" EntitySet="Категория_мероприятия" />
+            <End Role="Мероприятия" EntitySet="Мероприятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тема_обращения_Категория_проблемы" Association="Self.FK_Тема_обращения_Категория_проблемы">
+            <End Role="Категория_проблемы" EntitySet="Категория_проблемы" />
+            <End Role="Тема_обращения" EntitySet="Тема_обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Мероприятия_МКД" Association="Self.FK_Мероприятия_МКД">
+            <End Role="МКД" EntitySet="МКД" />
+            <End Role="Мероприятия" EntitySet="Мероприятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Мероприятия_Статус_мероприятия" Association="Self.FK_Мероприятия_Статус_мероприятия">
+            <End Role="Статус_мероприятия" EntitySet="Статус_мероприятия" />
+            <End Role="Мероприятия" EntitySet="Мероприятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МКД_Состояние_дома" Association="Self.FK_МКД_Состояние_дома">
+            <End Role="Состояние_дома" EntitySet="Состояние_дома" />
+            <End Role="МКД" EntitySet="МКД" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МКД_Способ_управления_МКД" Association="Self.FK_МКД_Способ_управления_МКД">
+            <End Role="Способ_управления_МКД" EntitySet="Способ_управления_МКД" />
+            <End Role="МКД" EntitySet="МКД" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МКД_Управляющие_компании" Association="Self.FK_МКД_Управляющие_компании">
+            <End Role="Управляющие_компании" EntitySet="Управляющие_компании" />
+            <End Role="МКД" EntitySet="МКД" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_МКД" Association="Self.FK_Обращения_МКД">
+            <End Role="МКД" EntitySet="МКД" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Сезонность_обращения" Association="Self.FK_Обращения_Сезонность_обращения">
+            <End Role="Сезон_обращения" EntitySet="Сезон_обращения" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Статус_обращения" Association="Self.FK_Обращения_Статус_обращения">
+            <End Role="Статус_обращения" EntitySet="Статус_обращения" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Тема_обращения" Association="Self.FK_Обращения_Тема_обращения">
+            <End Role="Тема_обращения" EntitySet="Тема_обращения" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Обращения_Учётные_записи" Association="Self.FK_Обращения_Учётные_записи">
+            <End Role="Учётные_записи" EntitySet="Учётные_записи" />
+            <End Role="Обращения" EntitySet="Обращения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фото_Обращения" Association="Self.FK_Фото_Обращения">
+            <End Role="Обращения" EntitySet="Обращения" />
+            <End Role="Фото" EntitySet="Фото" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Управляющие_компании_ОПФ_ук" Association="Self.FK_Управляющие_компании_ОПФ_ук">
+            <End Role="ОПФ_ук" EntitySet="ОПФ_ук" />
+            <End Role="Управляющие_компании" EntitySet="Управляющие_компании" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Учётные_записи_Тип_учётной_записи" Association="Self.FK_Учётные_записи_Тип_учётной_записи">
+            <End Role="Тип_учётной_записи" EntitySet="Тип_учётной_записи" />
+            <End Role="Учётные_записи" EntitySet="Учётные_записи" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Управляющие_компании_Учётные_записи" Association="Self.FK_Управляющие_компании_Учётные_записи">
+            <End Role="Учётные_записи" EntitySet="Учётные_записи" />
+            <End Role="Управляющие_компании" EntitySet="Управляющие_компании" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MonitoringSystemDBModelContainer" CdmEntityContainer="MonitoringSystemDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Категория_мероприятия">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Категория_мероприятия">
+              <MappingFragment StoreEntitySet="Категория_мероприятия">
+                <ScalarProperty Name="код_категории_меропр" ColumnName="код_категории_меропр" />
+                <ScalarProperty Name="категория_меропр" ColumnName="категория_меропр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Категория_проблемы">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Категория_проблемы">
+              <MappingFragment StoreEntitySet="Категория_проблемы">
+                <ScalarProperty Name="код_категории_проблемы" ColumnName="код_категории_проблемы" />
+                <ScalarProperty Name="кат_проблемы" ColumnName="кат_проблемы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Мероприятия">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Мероприятия">
+              <MappingFragment StoreEntitySet="Мероприятия">
+                <ScalarProperty Name="код_мероприятия" ColumnName="код_мероприятия" />
+                <ScalarProperty Name="кат_меропр" ColumnName="кат_меропр" />
+                <ScalarProperty Name="тема_меропр" ColumnName="тема_меропр" />
+                <ScalarProperty Name="объект_МКД" ColumnName="объект_МКД" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="дата_время_проведения" ColumnName="дата_время_проведения" />
+                <ScalarProperty Name="исполнитель" ColumnName="исполнитель" />
+                <ScalarProperty Name="статус_меропр" ColumnName="статус_меропр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="МКД">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.МКД">
+              <MappingFragment StoreEntitySet="МКД">
+                <ScalarProperty Name="код_МКД" ColumnName="код_МКД" />
+                <ScalarProperty Name="адрес" ColumnName="адрес" />
+                <ScalarProperty Name="кол_жил_пом" ColumnName="кол_жил_пом" />
+                <ScalarProperty Name="состояние_МКД" ColumnName="состояние_МКД" />
+                <ScalarProperty Name="детская_площадка" ColumnName="детская_площадка" />
+                <ScalarProperty Name="спортивная_площадка" ColumnName="спортивная_площадка" />
+                <ScalarProperty Name="тип_управления" ColumnName="тип_управления" />
+                <ScalarProperty Name="ОКТМО" ColumnName="ОКТМО" />
+                <ScalarProperty Name="УК" ColumnName="УК" />
+                <ScalarProperty Name="кадастровый_номер" ColumnName="кадастровый_номер" />
+                <ScalarProperty Name="год_постройки" ColumnName="год_постройки" />
+                <ScalarProperty Name="год_ВДВУ" ColumnName="год_ВДВУ" />
+                <ScalarProperty Name="тип_дома" ColumnName="тип_дома" />
+                <ScalarProperty Name="кол_этажей" ColumnName="кол_этажей" />
+                <ScalarProperty Name="кол_подъездов" ColumnName="кол_подъездов" />
+                <ScalarProperty Name="кол_лифтов" ColumnName="кол_лифтов" />
+                <ScalarProperty Name="площадь_жил_пом" ColumnName="площадь_жил_пом" />
+                <ScalarProperty Name="площадь_нежил_пом" ColumnName="площадь_нежил_пом" />
+                <ScalarProperty Name="площадь_ПВСОИ" ColumnName="площадь_ПВСОИ" />
+                <ScalarProperty Name="площадь_зем_участка" ColumnName="площадь_зем_участка" />
+                <ScalarProperty Name="фундамент" ColumnName="фундамент" />
+                <ScalarProperty Name="тип_перекрытий" ColumnName="тип_перекрытий" />
+                <ScalarProperty Name="мат_несущих_стен" ColumnName="мат_несущих_стен" />
+                <ScalarProperty Name="площадь_подвала" ColumnName="площадь_подвала" />
+                <ScalarProperty Name="тип_мусоропровода" ColumnName="тип_мусоропровода" />
+                <ScalarProperty Name="вентиляция" ColumnName="вентиляция" />
+                <ScalarProperty Name="водоотведение" ColumnName="водоотведение" />
+                <ScalarProperty Name="система_водостоков" ColumnName="система_водостоков" />
+                <ScalarProperty Name="газоснабжение" ColumnName="газоснабжение" />
+                <ScalarProperty Name="горячее_водоснаб" ColumnName="горячее_водоснаб" />
+                <ScalarProperty Name="холодное_водоснаб" ColumnName="холодное_водоснаб" />
+                <ScalarProperty Name="теплоснабжение" ColumnName="теплоснабжение" />
+                <ScalarProperty Name="электроснабжение" ColumnName="электроснабжение" />
+                <ScalarProperty Name="мат_отделки_фасада" ColumnName="мат_отделки_фасада" />
+                <ScalarProperty Name="форма_крыши" ColumnName="форма_крыши" />
+                <ScalarProperty Name="утепляющие_слои_чердачных_перекрытий" ColumnName="утепляющие_слои_чердачных_перекрытий" />
+                <ScalarProperty Name="мат_окон" ColumnName="мат_окон" />
+                <ScalarProperty Name="мат_сети_отопления" ColumnName="мат_сети_отопления" />
+                <ScalarProperty Name="мат_теплоизоляции_сети" ColumnName="мат_теплоизоляции_сети" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Обращения">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Обращения">
+              <MappingFragment StoreEntitySet="Обращения">
+                <ScalarProperty Name="код_обращения" ColumnName="код_обращения" />
+                <ScalarProperty Name="тема" ColumnName="тема" />
+                <ScalarProperty Name="сезонность" ColumnName="сезонность" />
+                <ScalarProperty Name="срок_подг_ответа" ColumnName="срок_подг_ответа" />
+                <ScalarProperty Name="срок_подтв_ответа" ColumnName="срок_подтв_ответа" />
+                <ScalarProperty Name="описание" ColumnName="описание" />
+                <ScalarProperty Name="статус_обращения" ColumnName="статус_обращения" />
+                <ScalarProperty Name="дата_обращения" ColumnName="дата_обращения" />
+                <ScalarProperty Name="объект_МКД" ColumnName="объект_МКД" />
+                <ScalarProperty Name="обслужив_лицо" ColumnName="обслужив_лицо" />
+                <ScalarProperty Name="оценка" ColumnName="оценка" />
+                <ScalarProperty Name="учётная_запись" ColumnName="учётная_запись" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ОПФ_ук">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.ОПФ_ук">
+              <MappingFragment StoreEntitySet="ОПФ_ук">
+                <ScalarProperty Name="код_опф" ColumnName="код_опф" />
+                <ScalarProperty Name="орг_прав_форма" ColumnName="орг_прав_форма" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сезон_обращения">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Сезон_обращения">
+              <MappingFragment StoreEntitySet="Сезон_обращения">
+                <ScalarProperty Name="код_сезонности_обр" ColumnName="код_сезонности_обр" />
+                <ScalarProperty Name="сезонность_обр" ColumnName="сезонность_обр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Состояние_дома">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Состояние_дома">
+              <MappingFragment StoreEntitySet="Состояние_дома">
+                <ScalarProperty Name="код_состояния_объекта" ColumnName="код_состояния_объекта" />
+                <ScalarProperty Name="состояние_объекта_МКД" ColumnName="состояние_объекта_МКД" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Способ_управления_МКД">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Способ_управления_МКД">
+              <MappingFragment StoreEntitySet="Способ_управления_МКД">
+                <ScalarProperty Name="код_типа_управления" ColumnName="код_типа_управления" />
+                <ScalarProperty Name="способ_управления" ColumnName="способ_управления" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Статус_мероприятия">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Статус_мероприятия">
+              <MappingFragment StoreEntitySet="Статус_мероприятия">
+                <ScalarProperty Name="код_тек_статуса_меропр" ColumnName="код_тек_статуса_меропр" />
+                <ScalarProperty Name="статус_меропр" ColumnName="статус_меропр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Статус_обращения">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Статус_обращения">
+              <MappingFragment StoreEntitySet="Статус_обращения">
+                <ScalarProperty Name="код_статуса_обращения" ColumnName="код_статуса_обращения" />
+                <ScalarProperty Name="статус_обр" ColumnName="статус_обр" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тема_обращения">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Тема_обращения">
+              <MappingFragment StoreEntitySet="Тема_обращения">
+                <ScalarProperty Name="код_темы_обращения" ColumnName="код_темы_обращения" />
+                <ScalarProperty Name="тема_проблемы" ColumnName="тема_проблемы" />
+                <ScalarProperty Name="категория_проблемы" ColumnName="категория_проблемы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тип_учётной_записи">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Тип_учётной_записи">
+              <MappingFragment StoreEntitySet="Тип_учётной_записи">
+                <ScalarProperty Name="код_типа_пользователя" ColumnName="код_типа_пользователя" />
+                <ScalarProperty Name="тип_пользователя" ColumnName="тип_пользователя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Управляющие_компании">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Управляющие_компании">
+              <MappingFragment StoreEntitySet="Управляющие_компании">
+                <ScalarProperty Name="код_ук" ColumnName="код_ук" />
+                <ScalarProperty Name="название" ColumnName="название" />
+                <ScalarProperty Name="фирм_наим" ColumnName="фирм_наим" />
+                <ScalarProperty Name="сокр_наим" ColumnName="сокр_наим" />
+                <ScalarProperty Name="ФИО_руков" ColumnName="ФИО_руков" />
+                <ScalarProperty Name="дата_получения_лицензии" ColumnName="дата_получения_лицензии" />
+                <ScalarProperty Name="номер_лицензии" ColumnName="номер_лицензии" />
+                <ScalarProperty Name="орган_выдавший_лицензию" ColumnName="орган_выдавший_лицензию" />
+                <ScalarProperty Name="ИНН" ColumnName="ИНН" />
+                <ScalarProperty Name="ОПФ" ColumnName="ОПФ" />
+                <ScalarProperty Name="ОГРН" ColumnName="ОГРН" />
+                <ScalarProperty Name="почтовый_адрес" ColumnName="почтовый_адрес" />
+                <ScalarProperty Name="адрес_ФМОУ" ColumnName="адрес_ФМОУ" />
+                <ScalarProperty Name="место_ГРЮЛ" ColumnName="место_ГРЮЛ" />
+                <ScalarProperty Name="адрес_дисп_службы" ColumnName="адрес_дисп_службы" />
+                <ScalarProperty Name="контактный_телефон" ColumnName="контактный_телефон" />
+                <ScalarProperty Name="адрес_электронной_почты" ColumnName="адрес_электронной_почты" />
+                <ScalarProperty Name="учётная_запись" ColumnName="учётная_запись" />
+                <ScalarProperty Name="подтверждение" ColumnName="подтверждение" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Учётные_записи">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Учётные_записи">
+              <MappingFragment StoreEntitySet="Учётные_записи">
+                <ScalarProperty Name="код_пользователя" ColumnName="код_пользователя" />
+                <ScalarProperty Name="логин" ColumnName="логин" />
+                <ScalarProperty Name="пароль" ColumnName="пароль" />
+                <ScalarProperty Name="тип_учётной_записи" ColumnName="тип_учётной_записи" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Фото">
+            <EntityTypeMapping TypeName="MonitoringSystemDBModel.Фото">
+              <MappingFragment StoreEntitySet="Фото">
+                <ScalarProperty Name="код_фото" ColumnName="код_фото" />
+                <ScalarProperty Name="номер_обращения" ColumnName="номер_обращения" />
+                <ScalarProperty Name="данные_фото" ColumnName="данные_фото" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

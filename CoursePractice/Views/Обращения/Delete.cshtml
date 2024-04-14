@@ -1,0 +1,169 @@
+﻿@model CoursePractice.Обращения
+
+@{
+    ViewBag.Title = "Delete";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы действительно хотите удалить это обращение?</h3>
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Тема_обращения.тема_проблемы)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Тема_обращения.тема_проблемы)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.срок_подг_ответа)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.срок_подг_ответа)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.срок_подтв_ответа)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.срок_подтв_ответа)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.описание)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.описание)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.дата_обращения)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.дата_обращения)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.обслужив_лицо)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.обслужив_лицо)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.оценка)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.оценка)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.МКД.адрес)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.МКД.адрес)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Сезон_обращения.сезонность_обр)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Сезон_обращения.сезонность_обр)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Статус_обращения1.статус_обр)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Статус_обращения1.статус_обр)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Учётные_записи.логин)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Учётные_записи.логин)
+            </dd>
+        </dl>
+    </div>
+    <div style="flex: 1;">
+        <h4>ㅤФото</h4>
+        <dl class="dl-horizontal">
+            <dd>
+                @foreach (var фото in Model.Фото)
+                {
+                    <div class="photo-item">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(фото.данные_фото)" style="max-width: 450px; max-height: 450px;" />
+                    </div>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<style>
+    .btn-del {
+        background-color: #FF0000;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+        .btn-del:hover {
+            background-color: #CC0000;
+        }
+
+        .btn-del:active {
+            background-color: #990000;
+        }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn-del" /> |
+        @Html.ActionLink("Вернуться к списку обращений", "Index")
+    </div>
+}

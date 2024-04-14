@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+}
+
+<h2>Отчёт по обращениям</h2>
+
+@using (Html.BeginForm("GenerateReport", "Отчёт", FormMethod.Post, new { @class = "reportForm" }))
+{
+    <input type="submit" value="Создать и показать отчёт" class="btn btn-primary" />
+}
+
+<div id="reportTableContainer"></div>
+
+@using (Html.BeginForm("DownloadReport", "Отчёт", FormMethod.Post))
+{
+    <button class="btn-save" type="submit">Скачать отчет</button>
+}
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $('.reportForm').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    success: function (result) {
+                        $('#reportTableContainer').html(result);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<style>
+    .btn-save {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+        .btn-save:hover {
+            background-color: #45a049;
+        }
+
+        .btn-save:active {
+            background-color: #3e8e41;
+        }
+</style>

@@ -1,0 +1,182 @@
+﻿@model CoursePractice.Управляющие_компании
+
+@{
+    ViewBag.Title = "Details";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Управляющие_компании</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.название)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.название)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.фирм_наим)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.фирм_наим)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.сокр_наим)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.сокр_наим)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ФИО_руков)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ФИО_руков)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.дата_получения_лицензии)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.дата_получения_лицензии)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.номер_лицензии)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.номер_лицензии)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.орган_выдавший_лицензию)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.орган_выдавший_лицензию)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ИНН)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ИНН)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ОГРН)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ОГРН)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.почтовый_адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.почтовый_адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.адрес_ФМОУ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.адрес_ФМОУ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.место_ГРЮЛ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.место_ГРЮЛ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.адрес_дисп_службы)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.адрес_дисп_службы)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.контактный_телефон)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.контактный_телефон)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.адрес_электронной_почты)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.адрес_электронной_почты)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.подтверждение)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.подтверждение)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ОПФ_ук.орг_прав_форма)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ОПФ_ук.орг_прав_форма)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Учётные_записи.логин)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Учётные_записи.логин)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.код_ук }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

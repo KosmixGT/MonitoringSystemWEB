@@ -1,0 +1,200 @@
+﻿@model IEnumerable<CoursePractice.Управляющие_компании>
+
+@{
+    ViewBag.Title = "Index";
+    <dd>
+
+        @if (User.IsInRole("Администратор"))
+        {
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+        else if (User.IsInRole("Житель"))
+        {
+            Layout = "~/Views/Shared/_ResidentLayout.cshtml";
+        }
+        else if (User.IsInRole("Менеджер УК"))
+        {
+            Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+    </dd>
+}
+
+<h2>Информация об управляющей компании</h2>
+
+@{
+    <dd>
+        @if (User.IsInRole("Менеджер УК"))
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
+                        <h3 style="background-color: darkorange; padding: 5px; color: black; border-radius: 5px; max-width: fit-content; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            @Html.DisplayFor(modelItem => item.название)
+                        </h3>
+                        <p><strong>Название:</strong> @Html.DisplayFor(modelItem => item.название)</p>
+                        <p><strong>Фирма наименование:</strong> @Html.DisplayFor(modelItem => item.фирм_наим)</p>
+                        <p><strong>Сокращенное наименование:</strong> @Html.DisplayFor(modelItem => item.сокр_наим)</p>
+                        <p><strong>ФИО руководителя:</strong> @Html.DisplayFor(modelItem => item.ФИО_руков)</p>
+                        <p><strong>Дата получения лицензии:</strong> @Html.DisplayFor(modelItem => item.дата_получения_лицензии)</p>
+                        <p><strong>Номер лицензии:</strong> @Html.DisplayFor(modelItem => item.номер_лицензии)</p>
+                        <p><strong>Орган, выдавший лицензию:</strong> @Html.DisplayFor(modelItem => item.орган_выдавший_лицензию)</p>
+                        <p><strong>ИНН:</strong> @Html.DisplayFor(modelItem => item.ИНН)</p>
+                        <p><strong>ОГРН:</strong> @Html.DisplayFor(modelItem => item.ОГРН)</p>
+                        <p><strong>Почтовый адрес:</strong> @Html.DisplayFor(modelItem => item.почтовый_адрес)</p>
+                        <p><strong>Адрес ФМОУ:</strong> @Html.DisplayFor(modelItem => item.адрес_ФМОУ)</p>
+                        <p><strong>Место ГРЮЛ:</strong> @Html.DisplayFor(modelItem => item.место_ГРЮЛ)</p>
+                        <p><strong>Адрес дисп. службы:</strong> @Html.DisplayFor(modelItem => item.адрес_дисп_службы)</p>
+                        <p><strong>Контактный телефон:</strong> @Html.DisplayFor(modelItem => item.контактный_телефон)</p>
+                        <p><strong>Адрес электронной почты:</strong> @Html.DisplayFor(modelItem => item.адрес_электронной_почты)</p>
+                        <p><strong>Подтверждение:</strong> @Html.DisplayFor(modelItem => item.подтверждение)</p>
+                        <p><strong>Организационно-правовая форма:</strong> @Html.DisplayFor(modelItem => item.ОПФ_ук.орг_прав_форма)</p>
+                        <p><strong>Логин учетной записи:</strong> @Html.DisplayFor(modelItem => item.Учётные_записи.логин)</p>
+                        <p>
+                            @Html.ActionLink("Редактировать", "Edit", new { id = item.код_ук }, new { style = "padding: 10px; background-color: orange; color: white; text-decoration: none;" })
+                        </p>
+
+                    </div>
+                }
+            </div>
+
+        }
+        else
+        {
+            <p>
+                @Html.ActionLink("Добавить УК", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.название)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.фирм_наим)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.сокр_наим)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.ФИО_руков)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.дата_получения_лицензии)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.номер_лицензии)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.орган_выдавший_лицензию)
+                    </th>*@
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.ИНН)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.ОГРН)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.почтовый_адрес)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.адрес_ФМОУ)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.место_ГРЮЛ)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.адрес_дисп_службы)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.контактный_телефон)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.адрес_электронной_почты)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.подтверждение)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ОПФ_ук.орг_прав_форма)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Учётные_записи.логин)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.название)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.фирм_наим)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.сокр_наим)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ФИО_руков)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.дата_получения_лицензии)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.номер_лицензии)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.орган_выдавший_лицензию)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ИНН)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ОГРН)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.почтовый_адрес)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.адрес_ФМОУ)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.место_ГРЮЛ)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.адрес_дисп_службы)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.контактный_телефон)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.адрес_электронной_почты)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.подтверждение)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ОПФ_ук.орг_прав_форма)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Учётные_записи.логин)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.код_ук }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.код_ук }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.код_ук })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+    </dd>    
+}
+

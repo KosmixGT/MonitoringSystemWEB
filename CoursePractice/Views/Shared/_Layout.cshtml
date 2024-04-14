@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница - система мониторинга</title>
+    <style>
+        .btn-sav {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+            .btn-sav:hover {
+                background-color: #45a049;
+            }
+
+            .btn-sav:active {
+                background-color: #3e8e41;
+            }
+    </style>
+    <style>
+
+        :root {
+            --primary-color: #ffffff;
+            --text-color: #ffffff;
+            --background-color: #1f8f39;
+            --grey-color: #1f8f39;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .navbar-dark .navbar-brand {
+            color: var(--text-color);
+        }
+
+            .navbar-dark .navbar-brand:hover,
+            .navbar-dark .navbar-brand:focus {
+                color: var(--text-color);
+            }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: var(--text-color);
+        }
+
+            .navbar-dark .navbar-nav .nav-link:hover,
+            .navbar-dark .navbar-nav .nav-link:focus {
+                color: var(--text-color);
+                background-color: var(--grey-color);
+            }
+
+        footer {
+            color: var(--text-color);
+        }
+
+            footer a {
+                color: var(--text-color);
+            }
+    </style>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <span class="navbar-brand disabled">Система мониторинга</span>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Переключить навигацию" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        @Html.ActionLink("Домашняя страница", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Информация", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Связаться", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p class="dark-text">&copy; @DateTime.Now.Year - Система мониторинга многоквартирных домов ASP.NET</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<style>
+    .dark-text {
+        color: #000000; /* Цвет текста */
+    }
+</style>
+
+<style>
+    .btn-save {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .btn-save:hover {
+        background-color: #45a049;
+    }
+
+    .btn-save:active {
+        background-color: #3e8e41;
+    }
+</style>
+
+<style>
+    .btn-delete {
+        background-color: #FF0000;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .btn-delete:hover {
+        background-color: #CC0000;
+    }
+
+    .btn-delete:active {
+        background-color: #990000;
+    }
+</style>
+
+<style>
+    .link-style {
+        color: #337ab7;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .link-style:hover {
+        text-decoration: underline;
+    }
+</style>
